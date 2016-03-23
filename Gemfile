@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
-gem 'devise'
+gem 'devise', git: 'git@github.com:plataformatec/devise.git'
 
 group :development, :test do
   gem 'byebug'
