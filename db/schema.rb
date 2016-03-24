@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324031628) do
+ActiveRecord::Schema.define(version: 20160324040327) do
 
   create_table "languages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -28,6 +28,20 @@ ActiveRecord::Schema.define(version: 20160324031628) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end
+
+  create_table "submits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.integer  "problem_id"
+    t.text     "code",        limit: 65535
+    t.string   "status",                    default: "WJ", null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "submits", ["language_id"], name: "index_submits_on_language_id", using: :btree
+  add_index "submits", ["problem_id"], name: "index_submits_on_problem_id", using: :btree
+  add_index "submits", ["user_id"], name: "index_submits_on_user_id", using: :btree
 
   create_table "test_cases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "input",      limit: 65535, null: false
@@ -59,4 +73,7 @@ ActiveRecord::Schema.define(version: 20160324031628) do
   add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "submits", "languages"
+  add_foreign_key "submits", "problems"
+  add_foreign_key "submits", "users"
 end

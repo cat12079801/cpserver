@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  language: one
+  problem: one
+  code: MyText
+  status: MyString
+
+two:
+  user: two
+  language: two
+  problem: two
+  code: MyText
+  status: MyString
