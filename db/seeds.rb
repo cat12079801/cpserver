@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+if Language.first.nil?
+  Language.create(name: "swift",        display: "Swift [Swift version 2.2]")
+  Language.create(name: "c",            display: "C [clang 3.6 / LLVM 3.6 (C99)]")
+  Language.create(name: "cpp",          display: "C++ [clang 3.6 / LLVM 3.6 / libc++ (C++14)]")
+  Language.create(name: "objective-c",  display: "Objective-C [clang 3.6 / LLVM 3.6 / GNUstep 7.7]")
+  Language.create(name: "java",         display: "Java [java 1.8.0]")
+  Language.create(name: "php",          display: "PHP [php 7.0.1]")
+  Language.create(name: "ruby",         display: "Ruby [ruby 2.2.0]")
+  Language.create(name: "python",       display: "Python2 [python 2.7.6]")
+  Language.create(name: "python3",      display: "Python3 [python 3.4.3]")
+  Language.create(name: "perl",         display: "Perl [perl 5.18.2]")
+  Language.create(name: "scala",        display: "Scala [Scala 2.11.2]")
+  Language.create(name: "go",           display: "Go [go 1.4.2]")
+  Language.create(name: "csharp",       display: "C# [mono-3.2.8.0 (C#5, CLI4.5)]")
+  Language.create(name: "haskell",      display: "Haskell [GHC 7.6.3]")
+  Language.create(name: "clojure",      display: "Clojure [Clojure 1.4.0]")
+  Language.create(name: "d",            display: "D [Clojure 1.4.0]")
+  Language.create(name: "erlang",       display: "Erlang [Erlang R16B03]")
+  Language.create(name: "r",            display: "R [R 3.0.2]")
+  Language.create(name: "javascript",   display: "JavaScript [node v4.2.2]")
+  Language.create(name: "coffeescript", display: "CoffeeScript [CoffeeScript 1.4.0 / nodejs 4.2.2]")
+  Language.create(name: "cobol",        display: "COBOL [OpenCOBOL 1.1.0]")
+  Language.create(name: "vb",           display: "VisualBasic [VB.net 0.0.0.5943 / mono-3.2.8.0]")
+  Language.create(name: "fsharp",       display: "F# [F# 3.0 (Open Source Edition) / mono-3.2.8.0]")
+  Language.create(name: "bash",         display: "Bash [GNU bash 4.3.11]")
+  Language.create(name: "mysql",        display: "MySQL [MySQL 5.6.27]")
+end
