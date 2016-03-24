@@ -1,4 +1,5 @@
 if Language.first.nil?
+  puts "create language data..."
   Language.create(name: "swift",        display: "Swift [Swift version 2.2]")
   Language.create(name: "c",            display: "C [clang 3.6 / LLVM 3.6 (C99)]")
   Language.create(name: "cpp",          display: "C++ [clang 3.6 / LLVM 3.6 / libc++ (C++14)]")
@@ -24,4 +25,20 @@ if Language.first.nil?
   Language.create(name: "fsharp",       display: "F# [F# 3.0 (Open Source Edition) / mono-3.2.8.0]")
   Language.create(name: "bash",         display: "Bash [GNU bash 4.3.11]")
   Language.create(name: "mysql",        display: "MySQL [MySQL 5.6.27]")
+  puts "finish!"
+end
+
+if User.first.nil?
+  puts "create user data..."
+  User.create(name: "cat", password: "hogehoge", administor: true)
+  User.create(name: "test", password: "hogehoge", administor: false)
+  puts "finish!"
+end
+
+if Problem.first.nil?
+  puts "create problem data..."
+  20.times do |i|
+    Problem.create(name: "Problem#{i}", question: "here details...", point: i*100, opened: i%6!=0)
+  end
+  puts "finish!"
 end
