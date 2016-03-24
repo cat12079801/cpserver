@@ -1,0 +1,19 @@
+<h1>No.<%= @problem.id+1 %> <%= @problem.name %></h1>
+
+<% if current_user.administor %>
+  <% if @problem.opened %>
+    <p>公開済</p>
+  <% else %>
+    <p>未公開</p>
+  <% end %>
+<% end %>
+
+<h2>問題</h2>
+<p><%= @problem.question %></p>
+
+ここに入出力サンプルをいれる <br>
+ここにsubmitフォームを作る <br>
+
+<%= link_to '編集', edit_problem_path(@problem)  %>
+<%= link_to '削除', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to '戻る', problems_path %>

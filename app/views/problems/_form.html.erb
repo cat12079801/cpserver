@@ -1,0 +1,24 @@
+<%= form_for @problem  do |f| %>
+  <div>
+    <p>name</p>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <p>question</p>
+    <%= f.text_area :question %>
+  </div>
+
+  <div>
+    <p>point</p>
+    <%= f.text_field :point %>
+  </div>
+
+  <div>
+    <p>opened</p>
+    <%= f.check_box :opened %>
+  </div>
+
+  <%= f.submit  %>
+  <%= link_to '戻る', problems_path %>
+<% end %>
