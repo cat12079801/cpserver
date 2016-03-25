@@ -42,3 +42,12 @@ if Problem.first.nil?
   end
   puts "finish!"
 end
+
+if Submit.first.nil?
+  puts "create submit data..."
+  status = %w(AC WA RE CE)
+  ((User.all.length * Problem.all.length)*5).times do
+    Submit.create(user: User.all.sample, language: Language.all.sample, problem: Problem.all.sample, code: "hogehoge", status: status.sample)
+  end
+  puts "finish!"
+end
