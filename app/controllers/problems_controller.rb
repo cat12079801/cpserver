@@ -1,5 +1,6 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :check_administor, except: [:index, :show]
 
   def index
     if current_user.administor
@@ -46,8 +47,12 @@ class ProblemsController < ApplicationController
       @problem = Problem.find(params[:id])
       redirect_to problems_path, notice: '(´・ω・`)' unless current_user.administor or @problem.opened
     end
- 
+
     def problem_params
       params.require(:problem).permit(:name, :question, :point, :opened)
+    end
+
+    def check_administor
+      redirect_to problems_path, notice: '(´・ω・`)' if current_user.administor.!
     end
 end

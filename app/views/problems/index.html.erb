@@ -3,6 +3,7 @@
     <tr>
       <th>No</th>
       <th>問題名</th>
+      <th>得点</th>
       <% if current_user.administor %>
         <th>公開</th>
         <th>編集</th>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= problem.id %></td>
         <td><%= link_to problem.name, problem_path(problem) %></td>
+        <td><%= problem.point %></td>
         <% if current_user.administor %>
           <% if problem.opened %>
             <td>済</td>

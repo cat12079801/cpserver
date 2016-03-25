@@ -14,6 +14,8 @@
 ここに入出力サンプルをいれる <br>
 ここにsubmitフォームを作る <br>
 
-<%= link_to '編集', edit_problem_path(@problem)  %>
-<%= link_to '削除', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if current_user.administor %>
+  <%= link_to '編集', edit_problem_path(@problem)  %>
+  <%= link_to '削除', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <%= link_to '戻る', problems_path %>
