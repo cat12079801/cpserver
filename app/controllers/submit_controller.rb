@@ -5,6 +5,7 @@ class SubmitController < ApplicationController
 
   def show
     @submit = Submit.find(params[:id])
+    redirect_to submit_index_path, notice: '(´・ω・`)' if @submit.user != current_user
   end
 
   def create
