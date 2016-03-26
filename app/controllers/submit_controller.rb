@@ -8,5 +8,17 @@ class SubmitController < ApplicationController
   end
 
   def create
+    @submit = Submit.new(submit_params)
+    @submit.user = current_user
+    if @submit.save
+      redirect_to submit_path(@submit), notice: 'submit was successfully created.'
+    else
+      render :new
+    end
   end
+
+  private
+    def submit_params
+      params.require(:submit).permit(:code, :language_id, :problem_id)
+    end
 end

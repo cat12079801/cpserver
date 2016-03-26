@@ -11,6 +11,7 @@ class ProblemsController < ApplicationController
   end
 
   def show
+    @submit = Submit.new
   end
 
   def new

@@ -12,7 +12,23 @@
 <p><%= @problem.question %></p>
 
 ここに入出力サンプルをいれる <br>
-ここにsubmitフォームを作る <br>
+<%= form_for @submit, url: {controller: 'submit', action: 'create'} do |f| %>
+  <div>
+    <%= f.label '言語' %>
+    <%= f.collection_select :language_id, Language.all, :id, :display %>
+  </div>
+
+  <div>
+    <%= f.label 'ソースコード' %>
+    <%= f.text_area :code %>
+  </div>
+
+  <div style="display: none">
+    <%= f.collection_select :problem_id, Problem.all, :id, :name, selected: @problem.id %>
+  </div>
+
+  <%= f.submit  %>
+<% end %>
 
 <% if current_user.administor %>
   <%= link_to '編集', edit_problem_path(@problem)  %>
