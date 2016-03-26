@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :problems
   resources :submit, only: [:index, :show, :create]
+  resources :test_cases, except: [:index]
 
   root to: "home#index"
 end
