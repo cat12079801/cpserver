@@ -1,2 +1,14 @@
-<h1>TestCases#show</h1>
-<p>Find me in app/views/test_cases/show.html.erb</p>
+<h1><%= link_to @test_case.problem.name, problem_path(@test_case.problem) %>#<%= @no %></h1>
+
+<h2>input</h2>
+<pre>
+  <%= @test_case.input %>
+</pre>
+
+<h2>output</h2>
+<pre>
+  <%= @test_case.output %>
+</pre>
+
+<%= link_to '編集', edit_test_case_path(@test_case)  %>
+<%= link_to '削除', test_case_path(@test_case), method: :delete, data: { confirm: 'Are you sure?' } %>

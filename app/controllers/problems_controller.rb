@@ -11,6 +11,7 @@ class ProblemsController < ApplicationController
   end
 
   def show
+    @test_cases = TestCase.where(problem: @problem)
     @submit = Submit.new
   end
 

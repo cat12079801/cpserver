@@ -11,7 +11,29 @@
 <h2>問題</h2>
 <p><%= @problem.question %></p>
 
-ここに入出力サンプルをいれる <br>
+<h2>入出力サンプル</h2>
+<hr>
+<% @test_cases.each.with_index(1) do |test_case, i| %>
+  <h3>入力例<%= i %></h3>
+  <pre>
+    <%= test_case.input %>
+  </pre>
+
+  <h3>出力例<%= i %></h3>
+  <pre>
+    <%= test_case.output %>
+  </pre>
+
+  <% if current_user.administor %>
+    <%= link_to '編集', edit_test_case_path(test_case) %>
+    <%= link_to '削除', test_case_path(test_case), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+
+  <hr>
+<% end %>
+
+<%= link_to 'テストケース作成', new_test_case_path(problem_id: @problem.id) if current_user.administor %>
+
 <%= form_for @submit, url: {controller: 'submit', action: 'create'} do |f| %>
   <div>
     <%= f.label '言語' %>

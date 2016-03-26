@@ -1,0 +1,18 @@
+<%= form_for @test_case  do |f| %>
+  <div>
+    <p>Problem</p>
+    <%= f.collection_select :problem_id, Problem.all, :id, :name %>
+  </div>
+
+  <div>
+    <p>input</p>
+    <%= f.text_area :input %>
+  </div>
+
+  <div>
+    <p>output</p>
+    <%= f.text_area :output %>
+  </div>
+
+  <%= f.submit  %>
+<% end %>

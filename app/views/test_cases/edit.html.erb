@@ -1,2 +1,5 @@
-<h1>TestCases#edit</h1>
-<p>Find me in app/views/test_cases/edit.html.erb</p>
+<h1><%= link_to @test_case.problem.name, problem_path(@test_case.problem) %>#<%= @no %></h1>
+
+<%= render 'form' %>
+
+<%= link_to '戻る', problems_path %>
