@@ -51,3 +51,13 @@ if Submit.first.nil?
   end
   puts "finish!"
 end
+
+if TestCase.first.nil?
+  puts "create test case data..."
+  Problem.all.each do |problem|
+    (1..5).to_a.sample.times do |i|
+      TestCase.create(problem: problem, input: "input text #{i+1} ...", output: "output text #{i+1} ...")
+    end
+  end
+  puts "finish!"
+end
