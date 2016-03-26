@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324040327) do
+ActiveRecord::Schema.define(version: 20160326154640) do
+
+  create_table "judges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "submit_id"
+    t.integer  "test_case_id"
+    t.string   "status",       default: "Judging", null: false
+    t.string   "paiza_api_id",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "judges", ["submit_id"], name: "index_judges_on_submit_id", using: :btree
+  add_index "judges", ["test_case_id"], name: "index_judges_on_test_case_id", using: :btree
 
   create_table "languages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -73,6 +85,8 @@ ActiveRecord::Schema.define(version: 20160324040327) do
   add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "judges", "submits"
+  add_foreign_key "judges", "test_cases"
   add_foreign_key "submits", "languages"
   add_foreign_key "submits", "problems"
   add_foreign_key "submits", "users"

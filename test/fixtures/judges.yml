@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  submit: one
+  test_case: one
+  status: MyString
+  paiza_api_id: MyString
+
+two:
+  submit: two
+  test_case: two
+  status: MyString
+  paiza_api_id: MyString
