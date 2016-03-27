@@ -7,18 +7,33 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <header>
-    <nav>
+    <ul id="dropdown-userinfo" class="dropdown-content">
       <% if user_signed_in? %> 
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to 'プロフィール変更', edit_user_registration_path %> |
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <li><%= link_to '設定', edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <%= link_to "サインイン", new_user_registration_path %> |
-        <%= link_to "ログイン", new_user_session_path %>
+        <li><%= link_to 'ユーザ作成', new_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
       <% end %>
+    </ul>
+    <nav class="orange accent-3">
+      <div class="nav-wrapper">
+        <%#= link_to 'きょーぎぷろぐらみんぐ', root_path, class: "left brand-logo" %>
+        <%= link_to 'Programming', root_path, class: "left brand-logo nekonecofont neko-logo" %>
+        <ul id="nav-mobile" class="right">
+          <li><%= link_to '問題', problems_path %></li>
+          <li><%= link_to '提出済', submit_index_path %></li>
+          <li><%= link_to '順位表', '#' %></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown-userinfo"><%= current_user_name %><i class="material-icons right">settings</i></a></li>
+        </ul>
+      </div>
     </nav>
   </header>
 

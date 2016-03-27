@@ -14,4 +14,13 @@
  *= require_self
  */
 
+@font-face {
+  font-family: 'NekoNeco';
+  src: font-url('NekoNeco.ttf') format('truetype'),
+}
+
+.nekonecofont {
+  font-family: NekoNeco;
+}
+
 @import 'materialize'
