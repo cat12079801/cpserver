@@ -11,6 +11,7 @@ gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
 gem 'devise', git: 'git@github.com:plataformatec/devise.git'
 gem 'sidekiq'
+gem 'materialize-sass'
 
 group :development, :test do
   gem 'byebug'
