@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327032729) do
+ActiveRecord::Schema.define(version: 20160327041609) do
 
   create_table "judges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "submit_id"
     t.integer  "test_case_id"
-    t.string   "status",             default: "Judging", null: false
-    t.string   "paiza_api_id",                           null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "paiza_error_msg"
-    t.string   "paiza_build_stderr"
-    t.string   "paiza_stderr"
+    t.string   "status",                           default: "Judging", null: false
+    t.string   "paiza_api_id",                                         null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.text     "paiza_error_msg",    limit: 65535
+    t.text     "paiza_build_stderr", limit: 65535
+    t.text     "paiza_stderr",       limit: 65535
     t.string   "paiza_time"
     t.integer  "paiza_memory"
     t.string   "paiza_result"
+    t.text     "output",             limit: 65535
   end
 
   add_index "judges", ["submit_id"], name: "index_judges_on_submit_id", using: :btree
