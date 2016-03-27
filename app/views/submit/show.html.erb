@@ -5,8 +5,32 @@
 <%= @submit.code %>
 </pre>
 
-<p>問題: <%= @submit.problem.name %></p>
+<p>問題: <%= link_to @submit.problem.name, problem_path(@submit.problem) %></p>
 <p>言語: <%= @submit.language.display %></p>
-<p>状態: <%= @submit.status %></p>
+<p>状態: <%= @submit.show_status %></p>
+<p>得点: <%= @submit.show_point %></p>
+
+<% if ["AC", "WA"].include? @submit.status %>
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>実行時間(sec)</th>
+        <th>メモリ使用量(bytes)</th>
+        <th>状態</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @submit.judges.each.with_index(1) do |judge, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= judge.paiza_time %></td>
+          <td><%= judge.paiza_memory %></td>
+          <td><%= judge.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <%= link_to '戻る', submit_index_path %>

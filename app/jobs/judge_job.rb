@@ -2,8 +2,11 @@ class JudgeJob < ApplicationJob
   queue_as :default
 
   def perform(submit)
+    submit.update(status: "Judging")
+    puts "start judging: submit##{submit.id}"
     submit.problem.test_cases.each do |test_case|
       judge = paiza_create(submit, test_case)
+      puts "paiza create posted: submit##{submit.id}, test_case##{test_case.id}"
 
       if judge.status == "ER"
         submit.update(status: "ER")
@@ -29,6 +32,7 @@ class JudgeJob < ApplicationJob
         judge.update(status: "WA")
       end
       judge.update(paiza_time: result["time"], paiza_memory: result["memory"], paiza_result: result["result"], paiza_stdout: result["stdout"])
+      puts "result##{judge.status}: submit##{submit.id}, test_case##{test_case.id}"
     end
 
     statuses = submit.judges.pluck(:status).uniq
@@ -45,6 +49,7 @@ class JudgeJob < ApplicationJob
     else
       submit.update(status: "WA")
     end
+    puts "all judged, result##{submit.status}: submit##{submit.id}"
   end
 
   private
