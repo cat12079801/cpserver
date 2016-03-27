@@ -1,4 +1,6 @@
 class SubmitController < ApplicationController
+  before_action :sign_in_check
+
   def index
     @submits = Submit.where(user_id: current_user.id)
   end

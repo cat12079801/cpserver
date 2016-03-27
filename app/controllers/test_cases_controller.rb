@@ -1,6 +1,7 @@
 class TestCasesController < ApplicationController
   before_action :set_test_case, only: [:show, :edit, :update, :destroy]
   before_action :set_number_in_problem, only: [:show, :edit]
+  before_action :sign_in_check
   before_action :check_administor
 
   def show
@@ -49,9 +50,5 @@ class TestCasesController < ApplicationController
 
     def test_case_params
       params.require(:test_case).permit(:problem_id, :input, :output)
-    end
-
-    def check_administor
-      redirect_to problems_path, notice: '(´・ω・`)' if current_user.administor.!
     end
 end
