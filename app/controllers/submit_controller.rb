@@ -12,6 +12,7 @@ class SubmitController < ApplicationController
     @submit = Submit.new(submit_params)
     @submit.user = current_user
     if @submit.save
+      JudgeJob.perform_later(@submit)
       redirect_to submit_path(@submit), notice: 'submit was successfully created.'
     else
       render :new
