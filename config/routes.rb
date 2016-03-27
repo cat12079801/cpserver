@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :test_cases, except: [:index]
 
   root to: "home#index"
+
+  mount ActionCable.server => '/cable'
 end
