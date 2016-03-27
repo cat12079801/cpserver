@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'home/index'
+  get 'ranking', to: "home#ranking"
 
   resources :problems
   resources :submit, only: [:index, :show, :create]
