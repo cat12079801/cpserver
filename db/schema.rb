@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327041609) do
+ActiveRecord::Schema.define(version: 20160327074435) do
 
   create_table "judges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "submit_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160327041609) do
     t.string   "paiza_time"
     t.integer  "paiza_memory"
     t.string   "paiza_result"
-    t.text     "output",             limit: 65535
+    t.text     "paiza_stdout",       limit: 65535
   end
 
   add_index "judges", ["submit_id"], name: "index_judges_on_submit_id", using: :btree

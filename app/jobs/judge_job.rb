@@ -28,7 +28,7 @@ class JudgeJob < ApplicationJob
       else
         judge.update(status: "WA")
       end
-      judge.update(paiza_time: result["time"], paiza_memory: result["memory"], paiza_result: result["result"], output: result["stdout"])
+      judge.update(paiza_time: result["time"], paiza_memory: result["memory"], paiza_result: result["result"], paiza_stdout: result["stdout"])
     end
 
     statuses = submit.judges.pluck(:status).uniq
