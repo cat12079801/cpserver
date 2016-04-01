@@ -1,13 +1,16 @@
-<table>
+<table class="highlight">
   <thead>
     <tr>
       <th>No</th>
       <th>問題名</th>
       <th>得点</th>
+      <th>正答人数</th>
       <% if current_user.administor %>
         <th>公開</th>
         <th>編集</th>
         <th>削除</th>
+      <% else %>
+        <th>正解</th>
       <% end %>
     </tr>
   </thead>
@@ -17,14 +20,29 @@
         <td><%= problem.id %></td>
         <td><%= link_to problem.name, problem_path(problem) %></td>
         <td><%= problem.point %></td>
+        <td><%= problem.solve_count %></td>
         <% if current_user.administor %>
           <% if problem.opened %>
-            <td>済</td>
+            <td><i class="material-icons light-green-text text-darken-2">done</i></td>
           <% else %>
             <td></td>
           <% end %>
-          <td><%= link_to '編集', edit_problem_path(problem)  %></td>
-          <td><%= link_to '削除', problem_path(problem), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= link_to edit_problem_path(problem), class: "waves-effect waves-circle waves-light btn-floating light-green darken-2" do %>
+              <i class="material-icons">description</i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to problem_path(problem), method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-circle waves-light btn-floating red darken-2" do %>
+              <i class="material-icons">delete</i>
+            <% end %>
+          </td>
+        <% else %>
+          <% if problem.solved? current_user %>
+            <td><i class="material-icons light-green-text text-darken-2">done</i></td>
+          <% else %>
+            <td></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
