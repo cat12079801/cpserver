@@ -1,4 +1,4 @@
-<h1>No.<%= @problem.id+1 %> <%= @problem.name %></h1>
+<h2>No.<%= @problem.id+1 %> <%= @problem.name %></h2>
 
 <% if current_user.administor %>
   <% if @problem.opened %>
@@ -8,18 +8,18 @@
   <% end %>
 <% end %>
 
-<h2>問題</h2>
+<h4>問題</h4>
 <p><%= @problem.question %></p>
 
-<h2>入出力サンプル</h2>
+<h4>テストケース</h4>
 <hr>
 <% @test_cases.each.with_index(1) do |test_case, i| %>
-  <h3>入力例<%= i %></h3>
+  <h5>入力例<%= i %></h5>
   <pre>
     <%= test_case.input %>
   </pre>
 
-  <h3>出力例<%= i %></h3>
+  <h5>出力例<%= i %></h5>
   <pre>
     <%= test_case.output %>
   </pre>
@@ -27,6 +27,9 @@
   <% if current_user.administor %>
     <%= link_to '編集', edit_test_case_path(test_case) %>
     <%= link_to '削除', test_case_path(test_case), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if test_case.sample %>
+      サンプル
+    <% end %>
   <% end %>
 
   <hr>
