@@ -1,62 +1,84 @@
-<h2>No.<%= @problem.id+1 %> <%= @problem.name %></h2>
-
 <% if current_user.administor %>
-  <% if @problem.opened %>
-    <p>公開済</p>
-  <% else %>
-    <p>未公開</p>
-  <% end %>
+  <div class="fixed-action-btn horizontal right-bottom">
+    <a class="btn-floating btn-large orange darken-2">
+      <i class="large material-icons">chat_bubble</i>
+    </a>
+    <ul>
+      <li>
+        <%= link_to edit_problem_path(@problem), class: "btn-floating light-green darken-2" do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-floating red darken-2" do %>
+          <i class="material-icons">delete</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to problems_path, class: "btn-floating blue darken-2" do %>
+          <i class="material-icons">call_received</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 <% end %>
 
-<h4>問題</h4>
-<p><%= @problem.question %></p>
+<h2>No.<%= @problem.id+1 %> <%= @problem.name %>
+<% if current_user.administor and @problem.opened %>
+    <span class="badge open"></span>
+<% end %>
+</h2>
 
-<h4>テストケース</h4>
+<h4>問題</h4>
+<div>
+  <%= @problem.question.html_safe %>
+</div>
+
+<h4>テストケース
+<% if current_user.administor %>
+  <%= link_to new_test_case_path(problem_id: @problem.id), class: "waves-effect waves-light btn-floating blue darken-2" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+<% end %>
+</h4>
 <hr>
 <% @test_cases.each.with_index(1) do |test_case, i| %>
-  <h5>入力例<%= i %></h5>
-  <pre>
-    <%= test_case.input %>
-  </pre>
-
-  <h5>出力例<%= i %></h5>
-  <pre>
-    <%= test_case.output %>
-  </pre>
-
-  <% if current_user.administor %>
-    <%= link_to '編集', edit_test_case_path(test_case) %>
-    <%= link_to '削除', test_case_path(test_case), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h5>入出力例<%= i %>
+  <%if current_user.administor %>
     <% if test_case.sample %>
-      サンプル
+      <span class="badge sample"></span>
+    <% end %>
+    <%= link_to edit_test_case_path(test_case), class: "waves-effect waves-light btn-floating light-green darken-2" do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to test_case_path(test_case), method: :delete, data: {confirm: 'Are you sure?' }, class: "waves-effect waves-light btn-floating red darken-2" do %>
+      <i class="material-icons">delete</i>
     <% end %>
   <% end %>
+  </h5>
+  <pre class="input<%= i %>">
+<%= test_case.input.chomp %>
+  </pre>
+
+  <pre class="output<%= i %>">
+<%= test_case.output.chomp %>
+  </pre>
 
   <hr>
 <% end %>
 
-<%= link_to 'テストケース作成', new_test_case_path(problem_id: @problem.id) if current_user.administor %>
-
 <%= form_for @submit, url: {controller: 'submit', action: 'create'} do |f| %>
-  <div>
-    <%= f.label '言語' %>
-    <%= f.collection_select :language_id, Language.all, :id, :display %>
-  </div>
+  <%= f.label '言語' %>
+  <%= f.collection_select :language_id, Language.all, :id, :display %>
 
-  <div>
+  <div class="input-field">
+    <%= f.text_area :code, class: "materialize-textarea" %>
     <%= f.label 'ソースコード' %>
-    <%= f.text_area :code %>
   </div>
 
   <div style="display: none">
     <%= f.collection_select :problem_id, Problem.all, :id, :name, selected: @problem.id %>
   </div>
 
-  <%= f.submit  %>
+    <%= f.submit '提出', class: "btn"  %>
 <% end %>
-
-<% if current_user.administor %>
-  <%= link_to '編集', edit_problem_path(@problem)  %>
-  <%= link_to '削除', problem_path(@problem), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-<%= link_to '戻る', problems_path %>
