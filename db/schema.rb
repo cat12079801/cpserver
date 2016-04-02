@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327074435) do
+ActiveRecord::Schema.define(version: 20160402033636) do
 
   create_table "judges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "submit_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20160327074435) do
     t.datetime "updated_at",                               null: false
   end
 
+  create_table "sample_cases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "input",      limit: 65535
+    t.text     "output",     limit: 65535
+    t.integer  "problem_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "sample_cases", ["problem_id"], name: "index_sample_cases_on_problem_id", using: :btree
+
   create_table "submits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "language_id"
@@ -63,11 +73,12 @@ ActiveRecord::Schema.define(version: 20160327074435) do
   add_index "submits", ["user_id"], name: "index_submits_on_user_id", using: :btree
 
   create_table "test_cases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "input",      limit: 65535, null: false
-    t.text     "output",     limit: 65535, null: false
+    t.text     "input",      limit: 65535,                 null: false
+    t.text     "output",     limit: 65535,                 null: false
     t.integer  "problem_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "sample",                   default: false, null: false
   end
 
   add_index "test_cases", ["problem_id"], name: "index_test_cases_on_problem_id", using: :btree
@@ -94,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160327074435) do
 
   add_foreign_key "judges", "submits"
   add_foreign_key "judges", "test_cases"
+  add_foreign_key "sample_cases", "problems"
   add_foreign_key "submits", "languages"
   add_foreign_key "submits", "problems"
   add_foreign_key "submits", "users"
