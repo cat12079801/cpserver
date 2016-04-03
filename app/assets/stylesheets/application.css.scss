@@ -122,7 +122,11 @@ pre {
   }
 }
 
-.vertical-margin20 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+@for $i from 1 through 10 {
+  .vertical-margin#{$i*10} {
+    margin: {
+      top: $i * 10px;
+      bottom: $i * 10px;
+    }
+  }
 }
