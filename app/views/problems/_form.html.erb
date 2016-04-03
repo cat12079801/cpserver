@@ -1,25 +1,30 @@
 <%= form_for @problem  do |f| %>
-  <div>
-    <p>name</p>
+  <div class="input-field">
     <%= f.text_field :name %>
+    <%= f.label '問題名' %>
   </div>
 
-  <div>
-    <p>question</p>
-    <%= f.text_area :question %>
+  <div class="input-field">
+    <%= f.text_area :question, class: "materialize-textarea" %>
+    <%= f.label '問題文' %>
   </div>
 
-  <div>
-    <p>point</p>
+  <div class="input-field">
     <%= f.text_field :point %>
+    <%= f.label '得点' %>
   </div>
 
-  <div>
-    <p>opened</p>
-    <%= f.check_box :opened %>
+  <p></p>
+  <div class="switch">
+    <label>
+      非公開
+      <%= f.check_box :opened %>
+      <span class="lever"></span>
+      公開
+    </label>
   </div>
+  <p></p>
 
-  <%= f.submit  %>
+  <%= link_to '戻る', @back_path, class: 'btn waves-effect blue-grey lighten-5 grey-text text-darken-3' %>
+  <%= f.submit '更新', class: "btn waves-effect waves-light" %>
 <% end %>
-
-<%= link_to '戻る', problems_path %>

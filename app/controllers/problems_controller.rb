@@ -18,9 +18,11 @@ class ProblemsController < ApplicationController
 
   def new
     @problem = Problem.new
+    @back_path = problems_path
   end
 
   def edit
+    @back_path = problem_path @problem
   end
 
   def create
