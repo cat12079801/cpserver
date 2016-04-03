@@ -1,18 +1,19 @@
 <%= form_for @test_case  do |f| %>
-  <div>
-    <p>Problem</p>
-    <%= f.collection_select :problem_id, Problem.all, :id, :name %>
+    <label>問題</label>
+    <select disabled>
+      <option value="<%= @test_case.problem_id %>" disabled selected><%= @test_case.problem.name %></option>
+    </select>
+
+  <div class="input-field">
+    <%= f.text_area :input, class: "materialize-textarea" %>
+    <%= f.label '入力' %>
   </div>
 
-  <div>
-    <p>input</p>
-    <%= f.text_area :input %>
+  <div class="input-field">
+    <%= f.text_area :output, class: "materialize-textarea" %>
+    <%= f.label '出力' %>
   </div>
 
-  <div>
-    <p>output</p>
-    <%= f.text_area :output %>
-  </div>
-
-  <%= f.submit  %>
+  <%= link_to '戻る', @back_path, class: 'btn waves-effect blue-grey lighten-5 grey-text text-darken-3' %>
+  <%= f.submit @submit_name, class: "btn waves-effect waves-light" %>
 <% end %>

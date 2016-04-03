@@ -19,10 +19,12 @@ class ProblemsController < ApplicationController
   def new
     @problem = Problem.new
     @back_path = problems_path
+    @submit_name = '作成'
   end
 
   def edit
     @back_path = problem_path @problem
+    @submit_name = '更新'
   end
 
   def create

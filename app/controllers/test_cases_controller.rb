@@ -6,9 +6,13 @@ class TestCasesController < ApplicationController
 
   def new
     @test_case = TestCase.new(problem_id: params[:problem_id])
+    @back_path = problem_path params[:problem_id]
+    @submit_name = '作成'
   end
 
   def edit
+    @back_path = problem_path @test_case.problem
+    @submit_name = '更新'
   end
 
   def create
