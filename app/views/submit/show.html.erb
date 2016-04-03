@@ -1,17 +1,45 @@
-<h1>Submit#<%= @submit.id+1 %></h1>
+<h2>Submit#<%= @submit.id+1 %></h2>
 
-<h3>code</h3>
-<pre>
+<pre class="submit code">
 <%= @submit.code %>
+
 </pre>
 
-<p>問題: <%= link_to @submit.problem.name, problem_path(@submit.problem) %></p>
-<p>言語: <%= @submit.language.display %></p>
-<p>状態: <%= @submit.show_status %></p>
-<p>得点: <%= @submit.show_point %></p>
+<table class="striped vertical-margin20">
+  <tbody>
+    <tr>
+      <th>問題</th>
+      <td><%= link_to @submit.problem.name, problem_path(@submit.problem) %></td>
+    </tr>
+    <tr>
+      <th>言語</th>
+      <td><%= @submit.language.display %></td>
+    </tr>
+    <tr>
+      <th>状態</th>
+      <td><span class="badge <%= @submit.status.downcase %>"></span></td>
+    </tr>
+    <tr>
+      <th>得点</th>
+      <td><%= @submit.show_point %></td>
+    </tr>
+    <tr>
+      <th>ソースコード長</th>
+      <td><%= @submit.code_length %></td>
+    </tr>
+    <tr>
+      <th>最長実行時間</th>
+      <td><%= @submit.max_runtime %></td>
+    </tr>
+    <tr>
+      <th>最大メモリ使用量</th>
+      <td><%= @submit.max_memory %></td>
+    </tr>
+  </tbody>
+</table>
 
 <% if ["AC", "WA"].include? @submit.status %>
-  <table>
+  <table class="highlight vertical-margin20">
     <thead>
       <tr>
         <th>No</th>
@@ -26,11 +54,11 @@
           <td><%= i %></td>
           <td><%= judge.paiza_time %></td>
           <td><%= judge.paiza_memory %></td>
-          <td><%= judge.status %></td>
+          <td><span class="badge <%= judge.status.downcase %>"></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to '戻る', submit_index_path %>
+<%= link_to '戻る', submit_index_path, class: 'btn waves-effect blue-grey lighten-5 grey-text text-darken-3 right vertical-margin20' %>

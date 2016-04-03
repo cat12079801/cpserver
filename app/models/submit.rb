@@ -24,4 +24,26 @@ class Submit < ApplicationRecord
     a = self.created_at.getlocal
     "#{a.hour.to_s.rjust(2, '0')}:#{a.min.to_s.rjust(2, '0')}.#{a.sec.to_s.rjust(2, '0')}"
   end
+
+  def code_length
+    self.code.bytesize.to_s + ' Bytes'
+  end
+
+  def max_runtime
+    a = self.judges.maximum(:paiza_time)
+    if a.nil?
+      '-'
+    else
+      a + ' sec'
+    end
+  end
+
+  def max_memory
+    a = self.judges.maximum(:paiza_memory)
+    if a.nil?
+      '-'
+    else
+      a.to_s + ' Bytes'
+    end
+  end
 end
