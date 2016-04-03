@@ -70,12 +70,12 @@
 <% end %>
 
 <%= form_for @submit, url: {controller: 'submit', action: 'create'} do |f| %>
-  <%= f.label '言語' %>
+  <%= f.label :language, '言語' %>
   <%= f.collection_select :language_id, Language.all, :id, :display %>
 
   <div class="input-field">
     <%= f.text_area :code, class: "materialize-textarea" %>
-    <%= f.label 'ソースコード' %>
+    <%= f.label :code, 'ソースコード' %>
   </div>
 
   <div style="display: none">
