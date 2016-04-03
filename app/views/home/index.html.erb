@@ -1,2 +1,82 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if signed_in?.! %>
+  <div class="vertical-margin60">
+    <%= form_for(:user, :url => session_path(:user)) do |f| %>
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <%= f.text_field :name %>
+          <%= f.label :name, 'ユーザ名' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6 offset-s3">
+          <%= f.password_field :password, autocomplete: "off" %>
+          <%= f.label :password, 'パスワード' %>
+        </div>
+      </div>
+
+      <div class="input-field vertical-margin30 set-center">
+        <%= f.submit 'ログイン', class: "btn waves-effect waves-light" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="set-center vertical-margin50">
+  <%= link_to 'https://paiza.io/projects/new?language=ruby', target: "_blank" do %>
+    <%= image_tag 'paiza-bnr.jpg' %>
+  <% end %>
+
+  <p>paiza.IOはオンラインですぐにプログラミングが始められる、 オンライン実行環境です。</p>
+  <p>Java,Ruby,Python,PHP,Perlなど 主要24言語に対応。ファイルアップ機能、外部apiへの接続や、 スクレイピングなども可能です。</p>
+  <p class="quote">引用 <<%= link_to 'https://paiza.io', 'https://paiza.io', target: "_blank" %>></p>
+</div>
+
+<div class="row">
+  <div class="col s6">
+    <table class="striped">
+      <tbody>
+        <tr>
+          <th>状態</th>
+          <th>元名称</th>
+          <th>説明</th>
+        </tr>
+        <tr>
+          <td><%= status_tag("ac").html_safe %></td>
+          <td>Accepted</td>
+          <td>正解です。用意されたテストを全てパスし、正しいプログラムであると判定されました。</td>
+        </tr>
+        <tr>
+          <td><%= status_tag("wa").html_safe %></td>
+          <td>Wrong Answer</td>
+          <td>提出されたプログラムの出力が間違っています。</td>
+        </tr>
+        <tr>
+          <td><%= status_tag("ce").html_safe %></td>
+          <td>Compilation Error</td>
+          <td>提出されたプログラムのコンパイルに失敗しました。</td>
+        </tr>
+        <tr>
+          <td><%= status_tag("re").html_safe %></td>
+          <td>Runtime Error</td>
+          <td>プログラムの実行中にエラーが発生しました。</td>
+        </tr>
+        <tr>
+          <td><%= status_tag("wj").html_safe %></td>
+          <td>Waiting for Judging</td>
+          <td>提出したプログラムはジャッジを待っている状態です。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col s6">
+    <h4 class="set-center">ルール</h4>
+    <hr>
+    <p>paiza.IOや手元の環境を使って各問題で設定された入力を受け取り、正しい出力ができるプログラムを作成してください。</p>
+    <p>作成したプログラムは問題ページ下部のフォームから提出してください。</p>
+    <p>提出後のステータスは左表のとおりです。</p>
+    <p>間違った提出によるペナルティはありません。また同じ問題に対して何度正解しても得られる得点は変わりません。</p>
+    <p class="kawaii-link"><%= link_to "Let's enjoy programming ٩(๑❛ᴗ❛๑)۶", problems_path %></p>
+  </div>
+</div>

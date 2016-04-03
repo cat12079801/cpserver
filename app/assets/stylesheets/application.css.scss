@@ -136,3 +136,27 @@ pre {
     }
   }
 }
+
+.set-center {
+  text-align: center;
+}
+
+.quote {
+  text-align: right;
+  color: #bdbdbd;
+  a {
+    color: #bdbdbd;
+    text-decoration: underline;
+  }
+}
+
+.kawaii-link {
+  text-align: center;
+  font-size: 20px;
+  a {
+    color: #ee6e73;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

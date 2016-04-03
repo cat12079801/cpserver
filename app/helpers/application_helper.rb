@@ -12,4 +12,8 @@ module ApplicationHelper
       return 'class=active'
     end
   end
+
+  def status_tag s
+    "<span class=\"badge #{s}\"></span>"
+  end
 end
