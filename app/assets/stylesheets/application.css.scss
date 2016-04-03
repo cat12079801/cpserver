@@ -36,7 +36,35 @@ span.badge {
   &.ac {
     background-color: #388e3c;
     &:after {
-      content: " AC";
+      content: "AC";
+    }
+  }
+
+  &.wj {
+    background-color: #bdbdbd;
+    &:after {
+      content: "WJ";
+    }
+  }
+
+  &.ce {
+    background-color: #ffa000;
+    &:after {
+      content: "CE";
+    }
+  }
+
+  &.wa {
+    background-color: #ffa000;
+    &:after {
+      content: "WA";
+    }
+  }
+
+  &.re {
+    background-color: #ffa000;
+    &:after {
+      content: "RE";
     }
   }
 

@@ -1,20 +1,22 @@
-<table>
+<table class="highlight">
   <thead>
     <tr>
       <th>提出時間</th>
-      <th>問題名</th>
+      <th>問題</th>
       <th>言語</th>
       <th>状態</th>
+      <th>得点</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @submits.each do |submit| %>
       <tr>
-        <td><%= submit.created_at %></td>
+        <td><%= submit.get_local_time %></td>
         <td><%= link_to submit.problem.name, problem_path(submit.problem) %></td>
         <td><%= submit.language.display %></td>
-        <td><%= submit.status %></td>
+        <td><span class="badge <%= submit.status.downcase %>"></span></td>
+        <td><%= submit.show_point %></td>
         <td><%= link_to '詳細を確認', submit_path(submit) %></td>
       </tr>
     <% end %>

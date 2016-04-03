@@ -34,6 +34,8 @@
   <%= @problem.question.html_safe %>
 </div>
 
+<p>得点：<%= @problem.point %></p>
+
 <h4>テストケース
 <% if current_user.administor %>
   <%= link_to new_test_case_path(problem_id: @problem.id), class: "waves-effect waves-light btn-floating blue darken-2" do %>

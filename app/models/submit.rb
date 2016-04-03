@@ -19,4 +19,9 @@ class Submit < ApplicationRecord
       0
     end
   end
+
+  def get_local_time
+    a = self.created_at.getlocal
+    "#{a.hour.to_s.rjust(2, '0')}:#{a.min.to_s.rjust(2, '0')}.#{a.sec.to_s.rjust(2, '0')}"
+  end
 end
