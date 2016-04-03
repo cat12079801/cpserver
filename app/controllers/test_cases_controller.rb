@@ -1,11 +1,8 @@
 class TestCasesController < ApplicationController
-  before_action :set_test_case, only: [:show, :edit, :update, :destroy]
-  before_action :set_number_in_problem, only: [:show, :edit]
+  before_action :set_test_case, only: [:edit, :update, :destroy]
+  before_action :set_number_in_problem, only: [:edit]
   before_action :sign_in_check
   before_action :check_administor
-
-  def show
-  end
 
   def new
     @test_case = TestCase.new(problem_id: params[:problem_id])
