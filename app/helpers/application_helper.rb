@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def check_active c
-    if c == controller.controller_name or (c == 'ranking' and controller.action_name == 'ranking')
+    if c == controller.controller_name or (c == 'ranking' and controller.action_name == 'ranking') or (c == 'problems' and controller.controller_name == 'test_cases')
       return 'class=active'
     end
   end
