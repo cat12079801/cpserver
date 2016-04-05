@@ -66,6 +66,11 @@
           <td>Waiting for Judging</td>
           <td>提出したプログラムはジャッジを待っている状態です。</td>
         </tr>
+        <tr>
+          <td><%= status_tag("judging").html_safe %></td>
+          <td>Judging Now</td>
+          <td>提出したプログラムは現在ジャッジを行っています。</td>
+        </tr>
       </tbody>
     </table>
   </div>

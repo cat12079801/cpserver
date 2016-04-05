@@ -47,6 +47,13 @@ span.badge {
     }
   }
 
+  &.judging {
+    background-color: #bdbdbd;
+    &:after {
+      content: "JN";
+    }
+  }
+
   &.ce {
     background-color: #ffa000;
     &:after {
