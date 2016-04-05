@@ -12,7 +12,11 @@ class ProblemsController < ApplicationController
   end
 
   def show
-    @test_cases = TestCase.where(problem: @problem)
+    if current_user.administor
+      @test_cases = TestCase.where(problem: @problem)
+    else
+      @test_cases = TestCase.where(problem: @problem, sample: true)
+    end
     @submit = Submit.new
   end
 

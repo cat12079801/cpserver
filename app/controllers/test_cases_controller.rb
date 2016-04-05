@@ -18,7 +18,7 @@ class TestCasesController < ApplicationController
   def create
     @test_case = TestCase.new(test_case_params)
     if @test_case.save
-      redirect_to test_case_path(@test_case), notice: 'test_case was successfully created.'
+      redirect_to problem_path(@test_case.problem), notice: 'test_case was successfully created.'
     else
       render :new
     end
@@ -26,7 +26,7 @@ class TestCasesController < ApplicationController
 
   def update
     if @test_case.update(test_case_params)
-      redirect_to test_case_path(@test_case), notice: 'test_case was successfully updated.'
+      redirect_to problem_path(@test_case.problem), notice: 'test_case was successfully updated.'
     else
       render :edit
     end
@@ -50,6 +50,6 @@ class TestCasesController < ApplicationController
     end
 
     def test_case_params
-      params.require(:test_case).permit(:problem_id, :input, :output)
+      params.require(:test_case).permit(:problem_id, :input, :output, :sample)
     end
 end
