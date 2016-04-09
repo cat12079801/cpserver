@@ -35,6 +35,18 @@
       <th>最大メモリ使用量</th>
       <td><%= @submit.max_memory %></td>
     </tr>
+    <% if @submit.status == 'CE' %>
+      <tr>
+        <th>コンパイルエラー</th>
+        <td><%= @submit.judges.first.paiza_build_stderr.html_safe %></td>
+      </tr>
+    <% end %>
+    <% if @submit.status == 'RE' %>
+      <tr>
+        <th>ランタイムエラー</th>
+        <td><%= @submit.judges.first.paiza_stderr.html_safe %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
